@@ -12,4 +12,5 @@
     <string name="add2">+2 points</string>
     <string name="add1">+1 point</string>
     <string name="reset">RESET</string>
+    <string name="teamb">TeamB</string>
 </resources>
