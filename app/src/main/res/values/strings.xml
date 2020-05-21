@@ -6,4 +6,10 @@
     <string name="Ce">Please enter Celsius</string>
     <string name="con" translatable="false">convert to fahreuheit</string>
     <string name="re">result:</string>
+    <string name="teama">TeamA</string>
+    <string name="score" translatable="false">0</string>
+    <string name="add3">+3 points</string>
+    <string name="add2">+2 points</string>
+    <string name="add1">+1 point</string>
+    <string name="reset">RESET</string>
 </resources>
