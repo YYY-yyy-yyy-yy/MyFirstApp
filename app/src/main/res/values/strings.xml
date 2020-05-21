@@ -3,4 +3,7 @@
     <string name="hello">Hello Birthday</string>
     <string name="from">Your Tom</string>
     <string name="Hello">Hello</string>
+    <string name="Ce">Please enter Celsius</string>
+    <string name="con" translatable="false">convert to fahreuheit</string>
+    <string name="re">result:</string>
 </resources>
