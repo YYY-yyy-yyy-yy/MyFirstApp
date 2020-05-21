@@ -2,4 +2,5 @@
     <string name="app_name">My FirstApp</string>
     <string name="hello">Hello Birthday</string>
     <string name="from">Your Tom</string>
+    <string name="Hello">Hello</string>
 </resources>
