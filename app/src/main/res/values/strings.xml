@@ -13,9 +13,11 @@
     <string name="add1">+1 point</string>
     <string name="reset">RESET</string>
     <string name="teamb">TeamB</string>
-    <string name="hint_text">Input rmb</string>
+    <string name="hint_text">Input RMB</string>
     <string name="showOut">Hello</string>
     <string name="dollar_label">dollar</string>
     <string name="euro_label">euro</string>
     <string name="won_label">won</string>
+    <string name="opencfg_label">Config</string>
+    <string name="btn_save_label">Save</string>
 </resources>
