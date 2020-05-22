@@ -20,4 +20,5 @@
     <string name="won_label">won</string>
     <string name="opencfg_label">Config</string>
     <string name="btn_save_label">Save</string>
+    <string name="set">Setting</string>
 </resources>
