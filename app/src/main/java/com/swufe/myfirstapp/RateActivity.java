@@ -146,7 +146,7 @@ public class RateActivity extends AppCompatActivity implements Runnable{
             openConfig();
         }else if(item.getItemId() == R.id.open_list){
             //打开列表窗口
-            Intent list = new Intent(this, MyListActivity.class);
+            Intent list = new Intent(this, MyList2Activity.class);
             startActivity(list);
         }
         return super.onOptionsItemSelected(item);
