@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="36dp"
+    android:paddingTop="36dp"
+    android:paddingRight="36dp"
+    android:paddingBottom="36dp"
+    tools:context=".RateActivity">
+
+    <EditText
+        android:id="@+id/rmb"
+        android:gravity="center"
+        android:hint="@string/hint_text"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent" />
+
+    <TextView
+        android:id="@+id/showOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="35sp" />
+
+    <Button
+        android:id="@+id/btn_dollar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="onClick"
+        android:text="@string/dollar_label" />
+
+    <Button
+        android:id="@+id/btn_euro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onClick"
+        android:text="@string/euro_label" />
+
+    <Button
+        android:id="@+id/btn_won"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onClick"
+        android:text="@string/won_label" />
+
+    <Button
+        android:id="@+id/opencfg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openOne"
+        android:text="@string/opencfg_label" />
+</LinearLayout>
