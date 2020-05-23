@@ -18,13 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class RateActivity extends AppCompatActivity implements Runnable{
 
@@ -59,9 +61,12 @@ public class RateActivity extends AppCompatActivity implements Runnable{
         handler = new Handler(){
             public void handleMessage(Message msg){
                 if(msg.what==5){
-                    String str = (String) msg.obj;
-                    Log.i(TAG,"handleMessage:msg="+str);
-
+                    Bundle bdl = (Bundle) msg.obj;
+                    dollarRate =bdl.getFloat("dollar-rate");
+                    euroRate =bdl.getFloat("euro-rate");
+                    wonRate =bdl.getFloat("won-rate");
+                    Log.i(TAG,"handleMessage:dollar"+dollarRate);
+                    Toast.makeText(RateActivity.this,"汇率已更新",Toast.LENGTH_SHORT).show();
                 }
                 super.handleMessage(msg);
             }
@@ -149,27 +154,60 @@ public class RateActivity extends AppCompatActivity implements Runnable{
                 e.printStackTrace();
             }
         }
-        //获取msg对象，用于返回主线程。
-        Message msg  = handler.obtainMessage(5);
-//        msg.what = 5;
-        msg.obj = "hello";
-        handler.sendMessage(msg);
+        //用于保存获取的汇率
+        Bundle bundle = new Bundle();
 
         //获取网络数据
+//        try {
+//            URL url = new URL("https://www.usd-cny.com/backofchina.htm");
+//            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+//
+//            InputStream in = http.getInputStream();
+//            String html = inputStream2String(in);
+//            Document doc = Jsoup.parse(html);
+//            Log.i(TAG,"run:html"+html);
+//
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        Document doc = null;
         try {
-            URL url = new URL("https://www.usd-cny.com/icbc.htm");
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            InputStream in = http.getInputStream();
+            doc = Jsoup.connect("https://www.usd-cny.com/bankofchina.htm").get();
+            Log.i(TAG,"run:"+doc.title());
+            Elements tables = doc.getElementsByTag("table");
+            Element table1 = tables.get(0);
+            Elements tds = table1.getElementsByTag("td");
+            for (int i =0;i<tds.size();i+=6){
+                Element td1 = tds.get(i);
+                Element td2 = tds.get(i+5);
+                Log.i(TAG,"run:"+td1.text()+"==>"+td2.text());
+                String str1 = td1.text();
+                String val = td2.text();
+                if("美元".equals(str1)){
+                    bundle.putFloat("dollar-rate",100f/Float.parseFloat(val));
+                }else if("欧元".equals(str1)){
+                    bundle.putFloat("euro-rate",100f/Float.parseFloat(val));
+                }else if("韩元".equals(str1)){
+                    bundle.putFloat("won-rate",100f/Float.parseFloat(val));
+                }
+            }
 
-            String html = inputStream2String(in);
-            Log.i(TAG,"run:html"+html);
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //bundle中保存所获取的汇率
+
+        //获取msg对象，用于返回主线程。
+        Message msg  = handler.obtainMessage(5);
+//        msg.what = 5;
+//        msg.obj = "hello";
+        msg.obj = bundle;
+        handler.sendMessage(msg);
     }
 
     private String inputStream2String(InputStream inputStream) throws IOException {
