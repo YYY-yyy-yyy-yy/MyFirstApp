@@ -144,6 +144,10 @@ public class RateActivity extends AppCompatActivity implements Runnable{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menu_set){
             openConfig();
+        }else if(item.getItemId() == R.id.open_list){
+            //打开列表窗口
+            Intent list = new Intent(this, MyListActivity.class);
+            startActivity(list);
         }
         return super.onOptionsItemSelected(item);
     }
